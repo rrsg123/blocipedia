@@ -1,0 +1,44 @@
+<h1>Edit Wiki</h1>
+
+<div class="row">
+  <div class="col-md-4">
+    <p>Rules</p>
+    <ul>
+      <li>Keep it short.</li>
+      <li>Stay on point.</li>
+      <li>Be nice.</li>
+    </ul>
+  </div>
+  <div class="col-md-8">
+    <%= form_for @wiki do |f| %>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control', placeholder: "Enter New Wiki Title..." %>
+      </div>
+      <div class="form-group">
+        <%= f.label :body %>
+        <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter New Wiki Body..." %>
+      </div>
+      <div>
+        <%= f.label :private do %>
+          <%= f.check_box :private %> Private wiki
+        <% end %>
+      </div>
+
+      <div>
+        <p>Add Collaborators</p>
+        <% if current_user.id == @wiki.user_id || current_user.admin? %>
+          <%= collection_check_boxes(:wiki, :user_ids, User.all, :id, :name) do |b| %>
+            <%= b.check_box %>
+            <%= b.label %><br />
+          <% end %>
+        <% end %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.submit "Save", class: 'btn btn-success' %>
+      </div>
+      
+    <% end %>
+  </div>
+</div>

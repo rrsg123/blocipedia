@@ -1,0 +1,16 @@
+<h1> Blocipedia Users </h1>
+
+<div class="row">
+  <div class="col-md-8">
+    <% @users.each do |user| %>
+      <div class="media">
+        <div class="media-body">
+          <p class="media-heading">
+            <strong><%= user.name %></strong> (<%= user.role %>) <br>
+            <a href="mailto:<%= user.email %>"><%= user.email %></a>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<h1>All Wikis</h1>
+<% @wikis.each do |wiki| %>
+  <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">
+        <% if wiki.private? %>
+            <%= link_to markdown(wiki.title), wiki, class: "private" %> <small>[private]</small>
+        <% else %>
+            <%= link_to markdown(wiki.title), wiki %>
+        <% end %>
+      </h4>
+    </div>
+  </div>
+<% end %>

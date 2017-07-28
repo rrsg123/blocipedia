@@ -1,0 +1,13 @@
+<div class="col-md-8">
+  <div class="media">
+    <br />
+    <div class="media-body">
+      <h3 class="media-heading"><%= @user.name %></h3>
+      <p>Account Type: <%= @user.role %></p>
+      <p>Contributions: <%= pluralize(@user.wikis.count, 'wiki') %></p>
+    </div>
+  </div>
+</div>
+<hr />
+<h3>WIKIS</h3>
+  <%= render @user.wikis %>
